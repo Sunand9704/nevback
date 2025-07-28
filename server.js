@@ -8,7 +8,20 @@ const connectDB = require("./config/mongodb");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    "https://nevfront.onrender.com",
+    "https://nevadmin.onrender.com",
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:5173",
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(corsOptions);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
